@@ -2,11 +2,15 @@ DROP PROCEDURE RegisterUser;
 
 DELIMITER //
 CREATE PROCEDURE RegisterUser (
-    in firstnameVar VARCHAR(100),
-    in lastnameVar VARCHAR(100),
-    in emailVar VARCHAR(100),
-    in usernameVar VARCHAR(100),
-    in userpasswordVar VARCHAR(100)
+    in usernameVar,
+    in passwordVar,
+
+    in firstnameVar,
+    in lastnameVar,
+    in heightVar,
+    in birthdayVar,
+    in genderVar,
+    in avatarVar,
 )
 BEGIN
 
@@ -20,14 +24,15 @@ BEGIN
         IF
             NOT EXISTS (SELECT email FROM userprofile WHERE email = emailVar)
         THEN
-            INSERT INTO userprofile
-                (firstname, lastname, email, username)
+            INSERT INTO users
+                (firstname, lastname, height, birthday, gender, avatar)
             VALUES
-                (firstnameVar, lastnameVar, emailVar, usernameVar);
+                (firstnameVar, lastnameVar, heightVar, birthdayVar, genderVar, avatarVar);
 
-            INSERT INTO userlogin (user_password) VALUES (userpasswordVar);
-
-            INSERT INTO userSettings (darkmode) VALUES (false);
+            INSERT INTO userlogin 
+            (username, password) 
+            VALUES 
+            (usernameVar, passwordVar);
         END IF;
     COMMIT;
 END//
