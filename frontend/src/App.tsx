@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthCheck } from './components';
+import { userContext } from './components';
+
 import { 
     Login,
     Profile,
@@ -10,34 +11,24 @@ import {
 
 function App() {
 
-    const [user, setUser] = useState(null);
+    const user = useContext(userContext)[0];
 
     return (
         <BrowserRouter>
 
-        {!user && (
-            <Routes>
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/*" element={<Login />} />
-            </Routes>
-        )}
+            {!user && (
+                <Routes>
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/*" element={<Login/>} />
+                </Routes>
+            )}
 
-        {user && (
-            <Routes>
-                <Route path="/profile">
-                    <AuthCheck>
-                        <Profile />
-                    </AuthCheck>
-                </Route>
-
-                <Route path="/matchlist">
-                    <AuthCheck>
-                        <Matchlist />
-                    </AuthCheck>
-                </Route>
-
-            </Routes>
-        )}
+            {user && (
+                <Routes>
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/matchlist" element={<Matchlist />} />
+                </Routes>
+            )}
 
             
         </BrowserRouter>
