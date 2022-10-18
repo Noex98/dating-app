@@ -9,16 +9,18 @@
         }
 
         function registerUser(
+            $username,
+            $password,
             $firstname,
             $lastname,
-            $email,
-            $username,
-            $password
+            $height,
+            $birthday,
+            $gender,
             ){
 
             $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $q = "CALL RegisterUser('$firstname', '$lastname', '$email', '$username', '$encryptedPassword')";
+            $q = "CALL RegisterUser('$firstname', '$lastname', '$height', '$username', '$encryptedPassword')";
             $this->mySQL->query($q);
         }
 

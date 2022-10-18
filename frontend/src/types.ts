@@ -15,3 +15,9 @@ export interface ICurrentUser extends IUser {
         gender: "male" | "female" | "all"
     }
 }
+
+export interface IRes<T> {
+    succes: boolean,
+    errMessage: string,
+    data: T
+}
