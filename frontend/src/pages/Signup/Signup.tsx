@@ -33,14 +33,13 @@ export const Signup = () => {
                 <br />
                 <input type="text" placeholder='First Name' onChange={e => setFirstname(e.target.value)}/> <br />
                 <input type="text" placeholder='Last Name' onChange={e => setLastname(e.target.value)}/> <br />
-                <input type="number" min="1" max="999" placeholder='Height'onChange={e => setHeight(e.target.value)}/> <br />
+                <input type="number" min="1" max="999" placeholder='Height'onChange={e => setHeight(parseInt(e.target.value))}/> <br />
                 <select onChange={selectChange}>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select><br />
-                <input type="date" id="start" name="trip-start"
-                    value="0000-00-00"
-                    min="2004-01-01" max="3000-12-31" onChange={e => setBirthday(e.target.value)}>
+                <input type="date"
+                    min="0000-01-01" max="9999-12-31" onChange={e => setBirthday(e.target.value)}>
                 </input>
                 <input type="submit" value="Sign Up" />
             </form>
