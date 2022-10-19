@@ -39,13 +39,13 @@
             }
         }
 
-        function editUserProfile($column, $value){
+        function editUserProfile($firstname, $lastname, $birthday, $gender, $height, $id){
             if(!isset($_SESSION)){
                 session_start();
             }
             if (isset($_SESSION['authToken'])){
-                $currentUserId = $_SESSION['authToken'];
-                $q = "UPDATE userprofile SET $column = '$value' WHERE id = '$currentUserId';";
+                $id = $_SESSION['authToken'];
+                $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$birthday', '$gender', '$height')";
                 $this->mySQL->query($q);
             }
         }
