@@ -45,7 +45,7 @@
             }
             if (isset($_SESSION['authToken'])){
                 $id = $_SESSION['authToken'];
-                $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$birthday', '$gender', '$height')";
+                $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$height', '$birthday', '$gender' )";
                 $this->mySQL->query($q);
             }
         }
