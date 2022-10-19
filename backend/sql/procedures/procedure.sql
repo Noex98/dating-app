@@ -34,17 +34,15 @@ BEGIN
         END IF;
     COMMIT;
 END;
-
-
 DELIMITER//
 CREATE PROCEDURE EditUserProfile (
     IN idVar INT,
     IN firstnameVar VARCHAR(50), 
     IN lastnameVar VARCHAR(50), 
+    IN heightVar int,
     IN birthdayVar date,
     IN genderVar VARCHAR(50),
-    IN avatarVar VARCHAR(50), 
-    IN heightVar int
+    IN avatarVar VARCHAR(50)   
 )
 
 BEGIN
@@ -58,11 +56,11 @@ BEGIN
     START TRANSACTION;
         UPDATE users
         SET firstname = firstnameVar, 
-        lastname = lastnameVar, 
+        lastname = lastnameVar,        
+        height = heightVar,
         birthday = birthdayVar, 
         gender = genderVar, 
-        avatar = avatarVar, 
-        height = heightVar
+        avatar = avatarVar
         WHERE id = idVar; 
     COMMIT;
 END//
