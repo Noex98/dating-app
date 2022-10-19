@@ -30,7 +30,7 @@
 
         function authorize($username, $password){
 
-            $q = "SELECT id FROM userLogin WHERE username = '$username'";
+            $q = "SELECT * FROM userLogin WHERE username = '$username'";
             $res = $this->mySQL->query($q);
             while($row = $res->fetch_object()){
                 $id = $row->id;
@@ -38,13 +38,6 @@
             }
 
             $loginSucces = password_verify($password, $encryptedPassword);
-
-            if ($loginSucces){
-                if(!isset($_SESSION)){
-                    session_start();
-                }
-                $_SESSION['authToken'] = $id;
-            }
 
             return $loginSucces ? $id : false;
         }

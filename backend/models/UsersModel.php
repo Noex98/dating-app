@@ -29,18 +29,10 @@ class UserModel
         return $users;
     }
 
-    function getCurrentUser()
-    {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        if (isset($_SESSION['authToken'])) {
-            $currentUserId = $_SESSION['authToken'];
-
-            $q = "SELECT * FROM users INNER JOIN preferences ON users.id = preferences.id WHERE users.id = '$currentUserId'";
-            $res = $this->mySQL->query($q);
-            return $res->fetch_object();
-        }
+    function getUser($id){
+        $q = "SELECT * FROM users INNER JOIN preferences ON users.id = preferences.id WHERE users.id = '$id'";
+        $res = $this->mySQL->query($q);
+        return $res->fetch_object();
     }
 
     function editUserProfile($firstname, $lastname, $birthday, $gender, $height, $id)

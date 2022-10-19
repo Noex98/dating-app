@@ -18,20 +18,26 @@
             'errMessage' => 'Invalid request'
         ]);
     } else {
-        $loginSucces = $authModel->authorize(
+        $id = $authModel->authorize(
             $req['username'],
             $req['password'],
         );
 
-        if(!$loginSucces){
+        if(!$id){
             echo json_encode([
                 'data' => null,
                 'succes' => false,
                 'errMessage' => 'Invalid user credentials'
             ]);
         } else {
+            
+            if(!isset($_SESSION)){
+                session_start();
+            }
+            $_SESSION['authToken'] = $id;
+
             echo json_encode([
-                'data' => $userModel->getCurrentUser(),
+                'data' => $userModel->getUser($id),
                 'succes' => true,
                 'errMessage' => ''
             ]);
