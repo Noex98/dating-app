@@ -29,18 +29,19 @@
         }
 
         function authorize($username, $password){
-
             $q = "SELECT * FROM userLogin WHERE username = '$username'";
             $res = $this->mySQL->query($q);
-            while($row = $res->fetch_object()){
-                $id = $row->id;
-                $encryptedPassword = $row->password;
+            $user = $res->fetch_object();
+
+            if($user){
+                $loginSucces = password_verify($password, $user->password);
+                return $loginSucces ? $user->id : false;
+            } else {
+                return false;
             }
-
-            $loginSucces = password_verify($password, $encryptedPassword);
-
-            return $loginSucces ? $id : false;
         }
+
+
 
         function authenticate(){
             if(!isset($_SESSION)){

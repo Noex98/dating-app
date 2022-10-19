@@ -25,8 +25,8 @@ function App() {
             
             {user?.data && (
                 <Routes>
-                    <Route path="/profile" element={<Profile />} />
                     <Route path="/matchlist" element={<Matchlist />} />
+                    <Route path="/*" element={<Profile />} />
                 </Routes>
             )}
 
