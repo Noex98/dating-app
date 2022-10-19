@@ -20,7 +20,7 @@ export const Signup = () => {
                     value="0000-00-00"
                     min="2004-01-01" max="3000-12-31">
                 </input>
-                <input type="subtmit" value="Sign Up" />
+                <input type="submit" value="Sign Up" />
             </form>
         </>
     )
