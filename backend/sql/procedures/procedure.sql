@@ -1,5 +1,3 @@
-DROP PROCEDURE RegisterUser;
-
 DELIMITER //
 CREATE PROCEDURE RegisterUser (
     in usernameVar,
