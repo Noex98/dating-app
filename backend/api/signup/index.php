@@ -1,6 +1,9 @@
 <?php 
     include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
 
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: *");
+
     
     $requestValid = (
         isset($_REQUEST['username']) &&
