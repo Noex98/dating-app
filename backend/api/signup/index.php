@@ -1,7 +1,7 @@
 <?php 
     include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/utils/getData.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/utils/getJsonBody.php');
 
     $req = getJsonBody();
 

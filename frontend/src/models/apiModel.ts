@@ -6,6 +6,9 @@ export class apiModel {
         const url = this.url + '/login'
         const res = await fetch(url, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 username: username,
                 password: password
@@ -28,8 +31,7 @@ export class apiModel {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
+            },
             body: JSON.stringify({
                 username: username,
                 password: password,
