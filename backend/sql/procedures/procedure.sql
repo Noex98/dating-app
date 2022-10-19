@@ -34,3 +34,38 @@ BEGIN
         END IF;
     COMMIT;
 END;
+
+
+DELIMITER//
+CREATE PROCEDURE EditUserProfile (
+    IN idVar INT,
+    IN firstnameVar VARCHAR(50), 
+    IN lastnameVar VARCHAR(50), 
+    IN birthdayVar date,
+    IN genderVar VARCHAR(50),
+    IN avatarVar VARCHAR(50), 
+    IN heightVar int
+)
+
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
+    BEGIN
+        ROLLBACK;
+        SELECT 'Rollback happened due to an error: ' ErrorMessage;
+    END;
+
+    START TRANSACTION;
+        UPDATE users
+        SET firstname = firstnameVar, 
+        lastname = lastnameVar, 
+        birthday = birthdayVar, 
+        gender = genderVar, 
+        avatar = avatarVar, 
+        height = heightVar
+        WHERE id = idVar; 
+    COMMIT;
+END//
+
+DELIMITER;
+
