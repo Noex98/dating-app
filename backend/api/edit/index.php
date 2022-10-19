@@ -1,16 +1,18 @@
-<?php 
-    include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
 
-    
-    $requestValid = (
-        isset($_REQUEST['firstname']) &&
+$id = $authModel->authenticate();
+
+if ($id) {
+    $requestValid = (isset($_REQUEST['firstname']) &&
         isset($_REQUEST['lastname']) &&
         isset($_REQUEST['height']) &&
         isset($_REQUEST['birthday']) &&
         isset($_REQUEST['gender'])
     );
 
-    if(!$requestValid){
+    if (!$requestValid) {
         echo json_encode([
             'data' => null,
             'succes' => false,
@@ -18,6 +20,7 @@
         ]);
     } else {
         $userModel->editUserProfile(
+            $id,
             $_REQUEST['firstname'],
             $_REQUEST['lastname'],
             $_REQUEST['height'],
@@ -30,5 +33,10 @@
             'errMessage' => ''
         ]);
     }
-
-?>
+} else {
+    echo json_encode([
+        'data' => null,
+        'succes' => false,
+        'errMessage' => 'Invalid request'
+    ]);
+}
