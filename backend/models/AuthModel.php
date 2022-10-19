@@ -20,7 +20,7 @@
 
             $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $q = "CALL RegisterUser('$firstname', '$lastname', '$height', '$username', '$encryptedPassword')";
+            $q = "CALL RegisterUser('$username', '$encryptedPassword', '$firstname', '$lastname', '$height', '$birthday', '$gender')";
             $this->mySQL->query($q);
         }
 

@@ -1,14 +1,14 @@
 DELIMITER //
-CREATE PROCEDURE RegisterUser (
-    in usernameVar,
-    in passwordVar,
 
-    in firstnameVar,
-    in lastnameVar,
-    in heightVar,
-    in birthdayVar,
-    in genderVar,
-    in avatarVar,
+
+CREATE DEFINER=`knickering_dk`@`%` PROCEDURE `RegisterUser`(
+    in usernameVar varchar(50),
+    in passwordVar varchar(60),
+    in firstnameVar varchar(50),
+    in lastnameVar varchar(50),
+    in heightVar INT,
+    in birthdayVar DATE,
+    in genderVar varchar(50)
 )
 BEGIN
 
@@ -17,22 +17,20 @@ BEGIN
         ROLLBACK;
         SELECT 'Rollback happened due to an error: ' ErrorMessage;
     END;
-
     START TRANSACTION;
         IF
-            NOT EXISTS (SELECT email FROM userprofile WHERE email = emailVar)
+            NOT EXISTS (SELECT username FROM userLogin WHERE username = usernameVar)
         THEN
             INSERT INTO users
-                (firstname, lastname, height, birthday, gender, avatar)
+                (firstname, lastname, height, birthday, gender)
             VALUES
-                (firstnameVar, lastnameVar, heightVar, birthdayVar, genderVar, avatarVar);
-
-            INSERT INTO userlogin 
-            (username, password) 
+                (firstnameVar, lastnameVar, heightVar, birthdayVar, genderVar);
+            
+            INSERT INTO userLogin 
+                (username, password) 
             VALUES 
-            (usernameVar, passwordVar);
+                (usernameVar, passwordVar);
+            INSERT INTO preferences () VALUES ();
         END IF;
     COMMIT;
-END//
-
-DELIMITER ;
+END;
