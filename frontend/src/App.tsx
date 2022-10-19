@@ -22,7 +22,7 @@ function App() {
                     <Route path="/*" element={<Login/>} />
                 </Routes>
             )}
-
+            
             {user?.data && (
                 <Routes>
                     <Route path="/profile" element={<Profile />} />

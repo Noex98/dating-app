@@ -45,9 +45,32 @@ export class apiModel {
         return await res.json();
     }
 
+    static editUser = async( 
+        firstname: string,
+        lastname: string,
+        height: number,
+        gender: "male" | "female",
+        birthday: string
+    ) => {
+        const url = this.url + '/signup'
+        const res = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                firstname: firstname,
+                lastname: lastname,
+                height: height,
+                gender: gender,
+                birthday: birthday
+            })
+        })
+        return await res.json();
+    }
+
     static getMatches = () => {
 
     }
+
+   
 
     static logout = () => {
         
