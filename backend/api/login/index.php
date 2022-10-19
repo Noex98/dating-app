@@ -1,11 +1,14 @@
 <?php 
     include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/utils/getData.php');
 
+    $req = getJsonBody();
     
     $requestValid = (
-        isset($_REQUEST['username']) &&
-        isset($_REQUEST['password'])
+        isset($req['username']) &&
+        isset($req['password'])
     );
 
     if(!$requestValid){
@@ -16,8 +19,8 @@
         ]);
     } else {
         $loginSucces = $authModel->authorize(
-            $_REQUEST['username'],
-            $_REQUEST['password'],
+            $req['username'],
+            $req['password'],
         );
 
         if(!$loginSucces){

@@ -46,7 +46,7 @@
                 $_SESSION['authToken'] = $id;
             }
 
-            return $loginSucces;
+            return $loginSucces ? $id : false;
         }
 
         function authenticate(){
