@@ -1,11 +1,14 @@
 export class apiModel {
 
-    static url = "localhost:3306"
+    static url = "http://localhost:4000/api"
 
     static login = async (username: string, password: string) => {
         const url = this.url + '/login'
         const res = await fetch(url, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 username: username,
                 password: password
@@ -26,6 +29,9 @@ export class apiModel {
         const url = this.url + '/signup'
         const res = await fetch(url, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 username: username,
                 password: password,
