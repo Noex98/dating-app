@@ -30,16 +30,11 @@
 
         function authorize($username, $password){
 
-            $q = "SELECT id FROM userprofile WHERE username = '$username'";
+            $q = "SELECT id FROM userLogin WHERE username = '$username'";
             $res = $this->mySQL->query($q);
             while($row = $res->fetch_object()){
                 $id = $row->id;
-            }
-
-            $q = "SELECT * FROM userlogin WHERE id = '$id'";
-            $res = $this->mySQL->query($q);
-            while($row = $res->fetch_object()){
-                $encryptedPassword = $row->user_password;
+                $encryptedPassword = $row->password;
             }
 
             $loginSucces = password_verify($password, $encryptedPassword);

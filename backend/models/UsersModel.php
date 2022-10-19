@@ -33,7 +33,7 @@
             if (isset($_SESSION['authToken'])){
                 $currentUserId = $_SESSION['authToken'];
 
-                $q = "SELECT * FROM userprofile INNER JOIN userSettings ON userprofile.id = userSettings.id WHERE userprofile.id = '$currentUserId'";
+                $q = "SELECT * FROM users INNER JOIN preferences ON users.id = preferences.id WHERE users.id = '$currentUserId'";
                 $res = $this->mySQL->query($q);
                 return $res->fetch_object();
             }
