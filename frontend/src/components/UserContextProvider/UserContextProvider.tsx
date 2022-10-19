@@ -5,14 +5,19 @@ type Props = {
     children: ReactNode
 }
 
-export const userContext = createContext<any>(null)
+type IUserContext = {
+    data: ICurrentUser | null,
+    set: null | React.Dispatch<React.SetStateAction<ICurrentUser | null>>
+}
+
+export const userContext = createContext<null | IUserContext>(null);
 
 export const UserContextProvider = ({children} : Props) => {
 
-    const userState = useState(null);
+    const userState = useState<ICurrentUser| null>(null);
 
     return (
-        <userContext.Provider value={userState}>
+        <userContext.Provider value={{data: userState[0], set: userState[1]}}>
             {children}
         </userContext.Provider>
     )

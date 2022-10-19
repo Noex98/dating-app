@@ -11,26 +11,25 @@ import {
 
 function App() {
 
-    const user = useContext(userContext)[0];
+    const user = useContext(userContext);
 
     return (
         <BrowserRouter>
 
-            {!user && (
+            {!user?.data && (
                 <Routes>
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/*" element={<Login/>} />
                 </Routes>
             )}
 
-            {user && (
+            {user?.data && (
                 <Routes>
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/matchlist" element={<Matchlist />} />
                 </Routes>
             )}
 
-            
         </BrowserRouter>
     );
 }
