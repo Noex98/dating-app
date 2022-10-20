@@ -4,20 +4,38 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/utils/getJsonBody.php');
 
-    $req = getJsonBody();
-
+    $id = $authModel->authenticate();
+    echo $id;
     
-    $userModel->setPreferences(
-        $req['id'],
-        $req['heightMin'],
-        $req['heightMax'],
-        $req['ageMin'],
-        $req['ageMax'],
-        $req['gender']
+    $req = getJsonBody();
+    $requestValid = (
+        !empty($req['heightMin']) &&
+        !empty($req['heightMax']) &&
+        !empty($req['ageMin']) &&
+        !empty($req['ageMax']) &&
+        !empty($req['gender'])
     );
     
-    echo json_encode([
+    if (!$requestValid) {
+        echo json_encode([
+            'data' => null,
+            'succes' => false,
+            'errMessage' => 'Invalid request: Must fill all fields'
+        ]);
+    } else {
+        $userModel->setPreferences(
+            $id,
+            $req['heightMin'],
+            $req['heightMax'],
+            $req['ageMin'],
+            $req['ageMax'],
+            $req['gender']
+        );
+            echo json_encode([
         'data' => null,
         'succes' => true,
         'errMessage' => ''
     ]);
+    }
+
+
