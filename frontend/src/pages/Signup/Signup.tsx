@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import { Header } from '../../components';
 import { apiModel } from '../../models/apiModel';
 
 export const Signup = () => {
@@ -25,7 +26,7 @@ export const Signup = () => {
 
     function submitHandler(e: React.FormEvent) {
         e.preventDefault();
-        const res = apiModel.signup(username, password, firstname, lastname, height, gender, birthday)
+        apiModel.signup(username, password, firstname, lastname, height, gender, birthday)
             .then((res) => {
                 if (res.succes === false) {
                     setError(res.errMessage);
@@ -37,6 +38,7 @@ export const Signup = () => {
 
     return (
         <>
+            <Header />
             <div>Signup</div>
             <form onSubmit={e => submitHandler(e)}>
                 <input type="text" placeholder='Username' onChange={e => setUsername(e.target.value)} /> <br />

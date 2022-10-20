@@ -108,9 +108,15 @@ export class apiModel {
 
     }
 
-   
-
-    static logout = () => {
-        
+    static logout = async () => {
+        const url = this.url + '/logout/index.php'
+        const res = await fetch(url, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        return await res.json();
     }
 }

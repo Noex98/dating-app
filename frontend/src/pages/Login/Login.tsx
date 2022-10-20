@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { apiModel } from '../../models/apiModel';
-import { userContext } from '../../components';
+import { Header, userContext } from '../../components';
 import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
@@ -27,10 +27,21 @@ export const Login = () => {
 
     return (
         <>
+            <Header />
             <h1>Login</h1>
             <form onSubmit={e =>submitHandler(e)}>
-                <input type="text" onChange={e => setUsername(e.target.value)} />
-                <input type="password" onChange={e => setPassword(e.target.value)} />
+                <div>
+                    <label>
+                        <span>Username: </span>
+                        <input type="text" onChange={e => setUsername(e.target.value)} />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Password: </span>
+                        <input type="password" onChange={e => setPassword(e.target.value)} />
+                    </label>
+                </div>
                 <input type="submit" value="Log in" />
             </form>
             <div>{errMessage}</div>
