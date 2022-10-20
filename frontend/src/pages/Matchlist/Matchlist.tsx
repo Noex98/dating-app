@@ -35,6 +35,7 @@ export const Matchlist = () => {
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select><br />
+        <input type="submit" value="Submit" />
       </form>
     </>
   )
