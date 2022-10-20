@@ -69,6 +69,26 @@ export class apiModel {
         return await res.json();
     }
 
+    static setPreferences = async(
+        heightMin: number,
+        heightMax: number,
+        ageMin: number,
+        ageMax: number,
+        gender: "male" | "female"
+    ) => {
+        const url = this.url + '/preferences'
+        const res = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                heigtMin: heightMin,
+                heightMax: heightMax,
+                ageMin: ageMin,
+                ageMax: ageMax,
+                gender: gender
+            })
+        })
+        return await res.json();
+    }
     static getMatches = () => {
 
     }
