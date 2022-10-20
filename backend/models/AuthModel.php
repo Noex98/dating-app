@@ -1,5 +1,5 @@
 <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
 
     class AuthModel {
         private $mySQL;
@@ -41,10 +41,8 @@
             }
         }
 
-
-
         function authenticate(){
-            if(!isset($_SESSION)){
+            if(!session_id()){
                 session_start();
             }
             return isset($_SESSION['authToken']) ? $_SESSION['authToken'] : false;

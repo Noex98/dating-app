@@ -30,17 +30,19 @@
                 'errMessage' => 'Invalid user credentials'
             ]);
         } else {
-            
-            if(!isset($_SESSION)){
+            if(!session_id()){
                 session_start();
             }
             $_SESSION['authToken'] = $id;
 
+            
             echo json_encode([
                 'data' => $userModel->getUser($id),
                 'succes' => true,
                 'errMessage' => ''
             ]);
+            
+            
         }
     }
 ?>

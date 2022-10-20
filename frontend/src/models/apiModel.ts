@@ -3,9 +3,10 @@ export class apiModel {
     static url = "http://localhost:4000/api"
 
     static login = async (username: string, password: string) => {
-        const url = this.url + '/login'
+        const url = this.url + '/login/index.php'
         const res = await fetch(url, {
             method: "POST",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -26,9 +27,10 @@ export class apiModel {
         gender: "male" | "female",
         birthday: string
     ) => {
-        const url = this.url + '/signup'
+        const url = this.url + '/signup/index.php'
         const res = await fetch(url, {
             method: "POST",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -52,9 +54,10 @@ export class apiModel {
         gender: "male" | "female",
         birthday: string
     ) => {
-        const url = this.url + '/edit'
+        const url = this.url + '/edit/index.php'
         const res = await fetch(url, {
             method: "POST",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },

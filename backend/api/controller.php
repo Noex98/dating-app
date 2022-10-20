@@ -1,4 +1,5 @@
 <?php
+    /*
     include($_SERVER['DOCUMENT_ROOT'] . "/models/UsersModel.php");
     session_start();
     
@@ -34,7 +35,7 @@
                 $myUsersModel->logOut();
                 header('location: ./login.php');
                 break;
-        
+
             case "updateAvatar":
 
                 $file = $_FILES['file'];
@@ -49,4 +50,5 @@
         }
 
     }
+    */
 ?>
