@@ -11,6 +11,7 @@ export const Header = () => {
 
     function logOutHandler(){
         apiModel.logout();
+        
         if (user?.set){
             user.set(null);
         }
