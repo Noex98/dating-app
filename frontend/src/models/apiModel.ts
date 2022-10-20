@@ -52,9 +52,12 @@ export class apiModel {
         gender: "male" | "female",
         birthday: string
     ) => {
-        const url = this.url + '/signup'
+        const url = this.url + '/edit'
         const res = await fetch(url, {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 firstname: firstname,
                 lastname: lastname,

@@ -17,7 +17,7 @@ export const Login = () => {
         
         apiModel.login(username, password).then(res => {
             if(res.succes && user?.set){
-                    user.set(res);
+                    user.set(res.data);
                     navigate('/profile');
             } else {
                 setErrMessage(res.errMessage);

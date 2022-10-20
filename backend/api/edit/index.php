@@ -1,42 +1,52 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/utils/getJsonBody.php');
 
-$id = $authModel->authenticate();
+    $req = getJsonBody();
 
-if ($id) {
-    $requestValid = (isset($_REQUEST['firstname']) &&
-        isset($_REQUEST['lastname']) &&
-        isset($_REQUEST['height']) &&
-        isset($_REQUEST['birthday']) &&
-        isset($_REQUEST['gender'])
-    );
+    $id = $authModel->authenticate();
 
-    if (!$requestValid) {
+    var_dump($_SESSION);
+    /*
+
+    if ($id) {
+        $requestValid = (
+            isset($req['firstname']) &&
+            isset($req['lastname']) &&
+            isset($req['height']) &&
+            isset($req['birthday']) &&
+            isset($req['gender'])
+        );
+
+        if (!$requestValid) {
+            echo json_encode([
+                'data' => null,
+                'succes' => false,
+                'errMessage' => 'Invalid request'
+            ]);
+        } else {
+            $userModel->editUserProfile(
+                $id,
+                $req['firstname'],
+                $req['lastname'],
+                $req['height'],
+                $req['birthday'],
+                $req['gender'],
+            );
+            echo json_encode([
+                'data' => null,
+                'succes' => true,
+                'errMessage' => ''
+            ]);
+        }
+    } else {
         echo json_encode([
             'data' => null,
             'succes' => false,
-            'errMessage' => 'Invalid request'
-        ]);
-    } else {
-        $userModel->editUserProfile(
-            $id,
-            $_REQUEST['firstname'],
-            $_REQUEST['lastname'],
-            $_REQUEST['height'],
-            $_REQUEST['birthday'],
-            $_REQUEST['gender'],
-        );
-        echo json_encode([
-            'data' => null,
-            'succes' => true,
-            'errMessage' => ''
+            'errMessage' => 'You are not authorized'
         ]);
     }
-} else {
-    echo json_encode([
-        'data' => null,
-        'succes' => false,
-        'errMessage' => 'Invalid request'
-    ]);
-}
+    */
+?>
