@@ -46,5 +46,3 @@
             'errMessage' => 'You are not authorized'
         ]);
     }
-
-?>
