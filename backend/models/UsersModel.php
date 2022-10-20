@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
 
 class UserModel
 {
@@ -55,9 +55,9 @@ class UserModel
         return $res->fetch_object();
     }
 
-    function editUserProfile($firstname, $lastname, $birthday, $gender, $height, $id)
+    function editUserProfile($id, $firstname, $lastname, $birthday, $gender, $height)
     {
-        $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$height', '$birthday', '$gender' )";
+        $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$birthday', '$gender', '$height' )";
         $this->mySQL->query($q);
     }
 

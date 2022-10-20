@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
@@ -7,9 +8,6 @@
     $req = getJsonBody();
 
     $id = $authModel->authenticate();
-
-    var_dump($_SESSION);
-    /*
 
     if ($id) {
         $requestValid = (
@@ -31,9 +29,9 @@
                 $id,
                 $req['firstname'],
                 $req['lastname'],
-                $req['height'],
                 $req['birthday'],
-                $req['gender'],
+                $req['gender'], 
+                $req['height'],
             );
             echo json_encode([
                 'data' => null,
@@ -48,5 +46,5 @@
             'errMessage' => 'You are not authorized'
         ]);
     }
-    */
+
 ?>
