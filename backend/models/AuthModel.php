@@ -20,8 +20,24 @@
 
             $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $q = "CALL RegisterUser('$username', '$encryptedPassword', '$firstname', '$lastname', '$height', '$birthday', '$gender')";
-            $this->mySQL->query($q);
+            $q = "SELECT * FROM userLogin WHERE username = $username";
+            $res = $this->mySQL->query($q);
+            $row = mysqli_num_rows($res);
+            if ($row < 1) { 
+                $q = "CALL RegisterUser('$username', '$encryptedPassword', '$firstname', '$lastname', '$height', '$birthday', '$gender')";
+                $this->mySQL->query($q);
+                echo json_encode([
+                    'data' => null,
+                    'succes' => true,
+                    'errMessage' => ''
+                ]);
+            } else 
+            echo json_encode([
+                'data' => null,
+                'succes' => false,
+                'errMessage' => 'Invalid request: User already exist'
+            ]);
+          
         }
 
         function logOut(){

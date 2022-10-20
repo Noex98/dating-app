@@ -6,20 +6,20 @@
     $req = getJsonBody();
 
     $requestValid = (
-        isset($req['username']) &&
-        isset($req['password']) &&
-        isset($req['firstname']) &&
-        isset($req['lastname']) &&
-        isset($req['height']) &&
-        isset($req['birthday']) &&
-        isset($req['gender'])
+        !empty($req['username']) &&
+        !empty($req['password']) &&
+        !empty($req['firstname']) &&
+        !empty($req['lastname']) &&
+        !empty($req['height']) &&
+        !empty($req['birthday']) &&
+        !empty($req['gender'])
     );
 
     if(!$requestValid){
         echo json_encode([
             'data' => null,
             'succes' => false,
-            'errMessage' => 'Invalid request'
+            'errMessage' => 'Invalid request: Must fill all fields'
         ]);
         
     } else {
@@ -32,10 +32,5 @@
             $req['birthday'],
             $req['gender'],
         );
-        echo json_encode([
-            'data' => null,
-            'succes' => true,
-            'errMessage' => ''
-        ]);
     }
 ?>

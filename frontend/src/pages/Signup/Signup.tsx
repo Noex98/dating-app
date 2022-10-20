@@ -4,6 +4,7 @@ import { apiModel } from '../../models/apiModel';
 
 export const Signup = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState("")
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -26,12 +27,12 @@ export const Signup = () => {
         e.preventDefault();
         const res = apiModel.signup(username, password, firstname, lastname, height, gender, birthday)
             .then((res) => {
-                if (res.succes === true) {
+                if (res.succes === false) {
+                    setError(res.errMessage);
+                } else {
                     navigate('/login')
                 }
             })
-
-
     }
 
     return (
@@ -53,6 +54,7 @@ export const Signup = () => {
                 </input>
                 <input type="submit" value="Sign Up" />
             </form>
+                {error}
         </>
     )
 }
