@@ -60,6 +60,12 @@ class UserModel
         $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$height', '$birthday', '$gender' )";
         $this->mySQL->query($q);
     }
+
+    function setPreferences($id, $heightMin, $heightMax, $ageMin, $ageMax, $gender)
+    {
+        $q = "CALL `SetPreferences`('$id', '$heightMin', '$heightMax', '$ageMin', '$ageMax', '$gender');";
+        $this->mySQL->query($q);
+    }
 }
 
 $userModel = new UserModel($mySQL);

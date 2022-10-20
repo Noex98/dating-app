@@ -67,3 +67,34 @@ END//
 
 DELIMITER;
 
+
+
+DELIMITER//
+CREATE PROCEDURE `SetPreferences`(
+    IN idVar INT,
+    IN heightMinVar INT,    
+    IN heightMaxVar INT,    
+    IN ageMinVar INT,    
+    IN ageMaxVar INT,    
+    IN genderVar VARCHAR(50)    
+)
+BEGIN
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
+    BEGIN
+        ROLLBACK;
+        SELECT 'Rollback happened due to an error: ' ErrorMessage;
+    END;
+    START TRANSACTION;
+        UPDATE preferences
+        SET heightMin = heightMinVar, 
+        heightMax = heightMaxVar,        
+        ageMin = ageMinVar,
+        ageMax = ageMaxVar, 
+        gender = genderVar
+        WHERE id = idVar;
+    COMMIT;
+    END//
+DELIMITER;
+
+
