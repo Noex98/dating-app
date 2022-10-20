@@ -63,7 +63,7 @@
             if(!isset($_SESSION)){
                 session_start();
             }
-            return $_SESSION['authToken'] ? $_SESSION['authToken'] : false;
+            return isset($_SESSION['authToken']) ? $_SESSION['authToken'] : false;
         }
     }
 

@@ -1,9 +1,9 @@
 export interface IUser {
     firstname: string,
     lastname: string,
-    age: number,
+    birthday: string,
     gender: "male" | "female",
-
+    height: number
 }
 
 export interface ICurrentUser extends IUser {

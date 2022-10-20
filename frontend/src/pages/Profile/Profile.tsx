@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
+import { userContext } from '../../components';
 import { apiModel } from '../../models/apiModel';
 
 export const Profile = () => {
@@ -8,7 +9,22 @@ export const Profile = () => {
     const  [gender, setGender] = useState<"male" | "female">("male");
     const  [birthday, setBirthday] = useState("");
 
- 
+    const user = useContext(userContext);
+
+    useEffect(() => {
+        if(user?.data){
+            setFirstname(user.data.firstname);
+            setLastname(user.data.lastname);
+            setHeight(user.data.height);
+            setGender(user.data.gender);
+            setBirthday(user.data.birthday);
+        }
+    }, [user?.data])
+
+    if(!user?.data){
+        return <></>
+    }
+    
 
     const selectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
@@ -17,26 +33,49 @@ export const Profile = () => {
         }
     };
 
+    console.log(user.data);
+    
+
     function submitHandler(e: React.FormEvent){
         e.preventDefault();
-        const res = apiModel.editUser(firstname, lastname, height, gender, birthday);
+        apiModel.editUser(firstname, lastname, height, gender, birthday).then(res => {
+            console.log(res);
+            
+        })
     }
 
     return (
         <>
-            <div>Profile</div>
-            <form onSubmit={e => submitHandler(e)}><br />
-                <input type="text" placeholder='First Name' onChange={e => setFirstname(e.target.value)}/> <br />
-                <input type="text" placeholder='Last Name' onChange={e => setLastname(e.target.value)}/> <br />
-                <input type="number" min="1" max="999" placeholder='Height' onChange={e => setHeight(parseInt(e.target.value))}/> <br />
+            <h2>Profile</h2>
+            <form onSubmit={e => submitHandler(e)}>
+                <div>
+                    <label >
+                        <span>Firstname</span>
+                        <input type="text" value={firstname} onChange={e => setFirstname(e.target.value)}/>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Lastname</span>
+                        <input type="text" value={lastname} onChange={e => setLastname(e.target.value)}/>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Height</span>
+                        <input type="number" min="1" max="999" value={height} onChange={e => setHeight(parseInt(e.target.value))}/>
+                    </label>
+                </div>
                 <select onChange={selectChange}>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option selected={gender === "female" ? true : false} value="female">Female</option>
+                    <option selected={gender === "male" ? true : false} value="male">Male</option>
                 </select><br />
                 <input type="date"
-                    min="0000-01-01" max="9999-12-31" onChange={e => setBirthday(e.target.value)}>
+                    min="0000-01-01" max="9999-12-31" value={birthday} onChange={e => setBirthday(e.target.value)}>
                 </input>
-                <input type="submit" value="Save Changes" />
+                <div>
+                    <input type="submit" value="Save Changes" />
+                </div>
             </form>
         </>
     )
