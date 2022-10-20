@@ -1,4 +1,5 @@
-import React, { ReactNode, useContext, createContext, useState } from 'react'
+import React, { ReactNode, useContext, createContext, useState, useEffect } from 'react'
+import { apiModel } from '../../models/apiModel'
 import { ICurrentUser } from '../../types'
 
 type Props = {
@@ -15,6 +16,16 @@ export const userContext = createContext<null | IUserContext>(null);
 export const UserContextProvider = ({children} : Props) => {
 
     const userState = useState<ICurrentUser| null>(null);
+    
+    
+    useEffect(() => {
+        apiModel.continueSession().then(res =>{
+            if(res.succes){
+                userState[1](res.data);
+            }
+        })
+    }, [])
+    
 
     return (
         <userContext.Provider value={{data: userState[0], set: userState[1]}}>

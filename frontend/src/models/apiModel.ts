@@ -18,6 +18,18 @@ export class apiModel {
         return await res.json();
     }
 
+    static continueSession = async () => {
+        const url = this.url + '/continueSession/index.php'
+        const res = await fetch(url, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        return await res.json();
+    }
+
     static signup = async (
         username: string,
         password: string,
