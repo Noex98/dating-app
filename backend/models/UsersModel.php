@@ -34,9 +34,12 @@ class UserModel
         $q = "SELECT * FROM preferences WHERE id = '$id'";
         $result = $this->mySQL->query($q);
         $preferences = mysqli_fetch_assoc($result);    
-        $q ="CALL getPotentialMatches('" . $preferences['heightMin']."', '" .  $preferences['heightMax']."', '" . $preferences['ageMin']."', '" . $preferences['ageMax']."', '" . $preferences['gender']. "' ')"; 
+        $q ="CALL getPotentialMatches('" . $preferences['heightMin']."', '" .  $preferences['heightMax']."', '" . $preferences['ageMin']."', '" . $preferences['ageMax']."', '" . $preferences['gender']. "')"; 
         $result = $this->mySQL->query($q);
-        return $result->fetch_object();
+        while ($row = $result->fetch_object()) {
+            $matches[] = $row;
+        }
+        return $matches;
     }
 
 
