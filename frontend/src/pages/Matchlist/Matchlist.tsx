@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Header } from '../../components';
 import { apiModel } from '../../models/apiModel';
 
 
@@ -25,6 +26,7 @@ export const Matchlist = () => {
 
   return (
     <>
+        <Header />
       <div>Matchlist</div>
       <form onSubmit={e => submitHandler(e)}>
         <input type="number" placeholder='Minimum Height' onChange={e => setHeightMin(parseInt(e.target.value))} />
