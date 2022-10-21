@@ -65,7 +65,9 @@ class UserModel
     {
         $q = "CALL `SetPreferences`('$id', '$heightMin', '$heightMax', '$ageMin', '$ageMax', '$gender');";
         $this->mySQL->query($q);
+        $q = "CALL getPotentialMatches('$id', '$heightMin', '$heightMax', '$ageMin', '$ageMax', $gender)";
     }
+    
 }
 
 $userModel = new UserModel($mySQL);
