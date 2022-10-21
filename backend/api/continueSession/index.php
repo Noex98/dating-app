@@ -6,11 +6,14 @@
     $id = $authModel->authenticate();
 
     if($id){
+        var_dump($userModel->getUser($id));
+        /*
         echo json_encode([
             'data' => $userModel->getUser($id),
             'succes' => true,
             'errMessage' => ''
         ]);
+        */
     } else {
         echo json_encode([
             'data' => null,

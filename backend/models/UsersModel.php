@@ -50,9 +50,20 @@ class UserModel
 
 
     function getUser($id){
+        /*
         $q = "SELECT * FROM users INNER JOIN preferences ON users.id = preferences.id WHERE users.id = '$id'";
         $res = $this->mySQL->query($q);
         return $res->fetch_object();
+        */
+
+        $q = "SELECT * FROM users  WHERE id = '$id'";
+        $res = $this->mySQL->query($q);
+        $output = mysqli_fetch_assoc($res);
+
+        $q = "SELECT * FROM preferences  WHERE id = '$id'";
+        $res = $this->mySQL->query($q);
+        $output['preferences'] = mysqli_fetch_assoc($res);
+        return $output;
     }
 
     function editUserProfile($id, $firstname, $lastname, $birthday, $gender, $height)
