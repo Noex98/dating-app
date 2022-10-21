@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Header } from '../../components';
+import React, { useContext, useEffect, useState } from 'react';
+import { Header, userContext } from '../../components';
 import { apiModel } from '../../models/apiModel';
 
 
@@ -9,6 +9,23 @@ export const Matchlist = () => {
   const [ageMin, setAgeMin] = useState(0);
   const [ageMax, setAgeMax] = useState(0);
   const [gender, setGender] = useState<"male" | "female">("male");
+
+  const user = useContext(userContext);
+  
+  useEffect(() => {
+    if(user?.data){
+        setHeightMin(user.data.heightMin);
+        setHeightMax(user.data.heightMax);
+        setAgeMin(user.data.ageMin);
+        setAgeMax(user.data.ageMax);
+        setGender(user.data.gender);
+    }
+}, [user?.data])
+
+if(!user?.data){
+    return <></>
+}
+
 
   const selectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;

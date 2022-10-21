@@ -94,8 +94,12 @@ export class apiModel {
         const url = this.url + '/preferences'
         const res = await fetch(url, {
             method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                heigtMin: heightMin,
+                heightMin: heightMin,
                 heightMax: heightMax,
                 ageMin: ageMin,
                 ageMax: ageMax,

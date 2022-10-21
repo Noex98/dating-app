@@ -10,7 +10,8 @@ $req = getJsonBody();
 $id = $authModel->authenticate();
 
 if ($id) {
-    $requestValid = (!empty($req['heightMin']) &&
+    $requestValid = (
+        !empty($req['heightMin']) &&
         !empty($req['heightMax']) &&
         !empty($req['ageMin']) &&
         !empty($req['ageMax']) &&
@@ -18,11 +19,12 @@ if ($id) {
     );
 
     if (!$requestValid) {
-        echo json_encode([
+        var_dump($req);
+      /*  echo json_encode([
             'data' => null,
             'succes' => false,
             'errMessage' => 'Invalid request: Must fill all fields'
-        ]);
+        ]); */
     } else {
         $userModel->setPreferences(
             $id,
