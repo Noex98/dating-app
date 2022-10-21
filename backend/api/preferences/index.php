@@ -1,21 +1,22 @@
-<?php 
-    include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
-    include($_SERVER['DOCUMENT_ROOT'] . '/utils/getJsonBody.php');
+<?php
+session_start();
+include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/models/UsersModel.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/utils/getJsonBody.php');
 
-    $id = $authModel->authenticate();
-    echo $id;
-    
-    $req = getJsonBody();
-    $requestValid = (
-        !empty($req['heightMin']) &&
+$req = getJsonBody();
+
+$id = $authModel->authenticate();
+
+if ($id) {
+    $requestValid = (!empty($req['heightMin']) &&
         !empty($req['heightMax']) &&
         !empty($req['ageMin']) &&
         !empty($req['ageMax']) &&
         !empty($req['gender'])
     );
-    
+
     if (!$requestValid) {
         echo json_encode([
             'data' => null,
@@ -31,11 +32,16 @@
             $req['ageMax'],
             $req['gender']
         );
-            echo json_encode([
-        'data' => null,
-        'succes' => true,
-        'errMessage' => ''
-    ]);
+        echo json_encode([
+            'data' => null,
+            'succes' => true,
+            'errMessage' => ''
+        ]);
     }
-
-
+} else {
+    echo json_encode([
+        'data' => null,
+        'succes' => false,
+        'errMessage' => 'You are not authorized'
+    ]);
+}
