@@ -29,23 +29,14 @@ class UserModel
         return $users;
     }
 
-    function getMatches($ammount)
+    function getMatches($id)
     {
-        $q = "SELECT * FROM userprofile ORDER BY id DESC LIMIT $ammount";
-        $res = $this->mySQL->query($q);
-        $users = [];
-
-        while ($row = $res->fetch_object()) {
-            array_push($users, [
-                "id" => $row->id,
-                "firstname" => $row->firstname,
-                "lastname" => $row->lastname,
-                "email" => $row->email,
-                "username" => $row->username
-            ]);
-        }
-
-        return $users;
+        $q = "SELECT * FROM preferences WHERE id = '$id'";
+        $result = $this->mySQL->query($q);
+        $preferences = mysqli_fetch_assoc($result);
+        $q ="CALL getPotentialMatches(" . $preferences['minHeight'] .  $preferences['maxHeight'] . $preferences['minAge'] . $preferences['maxAge'] . $preferences['gender'] . ")"; 
+        $result = $this->mySQL->query($q);
+        return $result->fetch_object();
     }
 
 
@@ -76,7 +67,6 @@ class UserModel
     {
         $q = "CALL `SetPreferences`('$id', '$heightMin', '$heightMax', '$ageMin', '$ageMax', '$gender');";
         $this->mySQL->query($q);
-        $q = "CALL getPotentialMatches('$id', '$heightMin', '$heightMax', '$ageMin', '$ageMax', $gender)";
     }
     
 }

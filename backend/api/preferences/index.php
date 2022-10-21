@@ -9,6 +9,8 @@ $req = getJsonBody();
 
 $id = $authModel->authenticate();
 
+
+
 if ($id) {
     $requestValid = (
         !empty($req['heightMin']) &&

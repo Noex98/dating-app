@@ -11,28 +11,32 @@ export const Matchlist = () => {
   const [gender, setGender] = useState<"male" | "female" | "all">("male");
 
   const user = useContext(userContext);
-  
   useEffect(() => {
-    if(user?.data){
-        setHeightMin(user.data.preferences.heightMin);
-        setHeightMax(user.data.preferences.heightMax);
-        setAgeMin(user.data.preferences.ageMin);
-        setAgeMax(user.data.preferences.ageMax);
-        setGender(user.data.preferences.gender);
+    apiModel.getMatches().then(res => (
+      
+    )) 
+  }, [])
+  useEffect(() => {
+    if (user?.data) {
+      setHeightMin(user.data.preferences.heightMin);
+      setHeightMax(user.data.preferences.heightMax);
+      setAgeMin(user.data.preferences.ageMin);
+      setAgeMax(user.data.preferences.ageMax);
+      setGender(user.data.preferences.gender);
     }
-}, [user?.data])
+  }, [user?.data])
 
-if(!user?.data){
+  if (!user?.data) {
     return <></>
-}
+  }
 
 
-  const selectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  function selectChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value;
     if (value === "male" || value === "female") {
       setGender(value);
     }
-  };
+  }
 
   function submitHandler(e: React.FormEvent) {
     e.preventDefault();
@@ -43,16 +47,17 @@ if(!user?.data){
 
   return (
     <>
-        <Header />
+      <Header />
       <div>Matchlist</div>
       <form onSubmit={e => submitHandler(e)}>
-        <input type="number" placeholder='Minimum Height' onChange={e => setHeightMin(parseInt(e.target.value))} />
-        <input type="number" placeholder='Maximum Height' onChange={e => setHeightMax(parseInt(e.target.value))} />
-        <input type="number" placeholder='Minimum Age' onChange={e => setAgeMin(parseInt(e.target.value))} />
-        <input type="number" placeholder='Maximum Age' onChange={e => setAgeMax(parseInt(e.target.value))} />
-        <select onChange={selectChange}>
+        <input type="number" value={heightMin} onChange={e => setHeightMin(parseInt(e.target.value))} />
+        <input type="number" value={heightMax} onChange={e => setHeightMax(parseInt(e.target.value))} />
+        <input type="number" value={ageMin} onChange={e => setAgeMin(parseInt(e.target.value))} />
+        <input type="number" value={ageMax} onChange={e => setAgeMax(parseInt(e.target.value))} />
+        <select onChange={selectChange} defaultValue={gender}>
           <option value="male">Male</option>
           <option value="female">Female</option>
+          <option value="all">all</option>
         </select><br />
         <input type="submit" value="Submit" />
       </form>

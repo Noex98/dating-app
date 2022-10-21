@@ -108,8 +108,8 @@ export class apiModel {
         })
         return await res.json();
     }
-    static getMatches = () => {
-
+    static getMatches = async() => {
+        
     }
 
     static logout = async () => {
