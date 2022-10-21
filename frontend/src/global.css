@@ -2,9 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    outline-offset: 2px;
-    outline-color: blue;
-    outline-width: 2px;
+    outline: none;
 }
 
 html, body, #root {
@@ -32,8 +30,20 @@ a:hover {
     color: rgb(0, 0, 156);
 }
 
-input, button, select {
-    padding:3px;
+button, .button {
+    background-color: rgb(233, 233, 233);
 }
+
+.button {
+    margin-top: 15px;
+}
+
+input, button, select {
+    padding:8px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 
 

@@ -43,19 +43,46 @@ export const Signup = () => {
             <div className='signupPage'>
                 <h1>Signup</h1>
                 <form onSubmit={e => submitHandler(e)}>
-                    <input type="text" placeholder='Username' onChange={e => setUsername(e.target.value)} />
-                    <input type="password" placeholder='Password' onChange={e => setPassword(e.target.value)} />
-                    <input type="text" placeholder='First Name' onChange={e => setFirstname(e.target.value)} />
-                    <input type="text" placeholder='Last Name' onChange={e => setLastname(e.target.value)} />
-                    <input type="number" min="1" max="999" placeholder='Height' onChange={e => setHeight(parseInt(e.target.value))} />
-                    <select onChange={selectChange}>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select><br />
-                    <input type="date"
-                        min="0000-01-01" max="9999-12-31" onChange={e => setBirthday(e.target.value)}>
-                    </input>
-                    <input type="submit" value="Sign Up" />
+                    <div className="input-option">
+                        <label>Username:</label>
+                        <input type="text" placeholder='Username' onChange={e => setUsername(e.target.value)} />
+
+                    </div>
+
+                    <div className="input-option">
+                        <label>Password:</label>
+                        <input type="password" placeholder='Password' onChange={e => setPassword(e.target.value)} />
+
+                    </div>
+                    <div className="input-option">
+                        <label>Firstname:</label>
+                        <input type="text" placeholder='First Name' onChange={e => setFirstname(e.target.value)} />
+
+                    </div>
+                    <div className="input-option">
+                        <label>Lastname:</label>
+                        <input type="text" placeholder='Last Name' onChange={e => setLastname(e.target.value)} />
+
+                    </div>
+                    <div className="input-option">
+                        <label>Height:</label>
+                        <input type="number" min="1" max="999" placeholder='Height' onChange={e => setHeight(parseInt(e.target.value))} />
+
+                    </div>
+                    <div className="input-option">
+                        <label>Gender:</label>
+                        <select onChange={selectChange}>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div className="input-option">
+                        <label>Birthday:</label>
+                        <input type="date"
+                            min="0000-01-01" max="9999-12-31" onChange={e => setBirthday(e.target.value)}>
+                        </input>
+                    </div>
+                    <input type="submit" value="Sign Up" className='button' />
                 </form>
                 {error}
             </div>

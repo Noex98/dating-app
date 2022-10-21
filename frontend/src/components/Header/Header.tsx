@@ -20,7 +20,7 @@ export const Header = () => {
     return (
         <header>
             <div>
-                <h1>Dating App</h1>
+                <h1 className='header-h1'>Dating App</h1>
                 <nav>
                     {loggedIn && (
                         <ul>

@@ -18,3 +18,7 @@ header ul {
     padding: 8px;
     cursor: pointer;
 }
+
+.header-h1 {
+    margin: 20px auto !important;
+}

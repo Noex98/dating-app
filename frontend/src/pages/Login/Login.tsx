@@ -44,7 +44,7 @@ export const Login = () => {
                             <input type="password" onChange={e => setPassword(e.target.value)} />
                         </label>
                     </div>
-                    <input type="submit" value="Log in" />
+                    <input type="submit" value="Log in" className='button'/>
                 </form>
                 <div>{errMessage}</div>
             </div>
