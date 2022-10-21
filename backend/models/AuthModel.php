@@ -1,73 +1,69 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
 
-    class AuthModel {
-        private $mySQL;
+class AuthModel
+{
+    private $mySQL;
 
-        public function __construct($mySQLConnection) {
-            $this->mySQL = $mySQLConnection;
-        }
+    public function __construct($mySQLConnection)
+    {
+        $this->mySQL = $mySQLConnection;
+    }
 
-        function registerUser(
-            $username,
-            $password,
-            $firstname,
-            $lastname,
-            $height,
-            $birthday,
-            $gender,
-            ){
+    function registerUser(
+        $username,
+        $password,
+        $firstname,
+        $lastname,
+        $height,
+        $birthday,
+        $gender,
+    ) {
 
-            $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $q = "SELECT * FROM userLogin WHERE username = $username";
-            $res = $this->mySQL->query($q);
-            $row = mysqli_num_rows($res);
-            if ($row < 1) { 
-                $q = "CALL RegisterUser('$username', '$encryptedPassword', '$firstname', '$lastname', '$height', '$birthday', '$gender')";
-                $this->mySQL->query($q);
-                echo json_encode([
-                    'data' => null,
-                    'succes' => true,
-                    'errMessage' => ''
-                ]);
-            } else 
-            echo json_encode([
-                'data' => null,
-                'succes' => false,
-                'errMessage' => 'Invalid request: User already exist'
-            ]);
-          
-        }
-
-        function logout(){
-            session_unset();
-            session_destroy();
-            session_write_close();
-            setcookie(session_name(),'',0,'/');
-            session_regenerate_id(true);
-        }
-
-        function authorize($username, $password){
-            $q = "SELECT * FROM userLogin WHERE username = '$username'";
-            $res = $this->mySQL->query($q);
-            $user = $res->fetch_object();
-
-            if($user){
-                $loginSucces = password_verify($password, $user->password);
-                return $loginSucces ? $user->id : false;
-            } else {
-                return false;
-            }
-        }
-
-        function authenticate(){
-            if(!session_id()){
-                session_start();
-            }
-            return isset($_SESSION['authToken']) ? $_SESSION['authToken'] : false;
+        $q = "SELECT * FROM userLogin WHERE username = '$username'";
+        $res = $this->mySQL->query($q);
+        $row = mysqli_num_rows($res);
+        if ($row < 1) {
+            $q = "CALL RegisterUser('$username', '$encryptedPassword', '$firstname', '$lastname', '$height', '$birthday', '$gender')";
+            $this->mySQL->query($q);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    $authModel = new AuthModel($mySQL);
-?>
+    function logout()
+    {
+        session_unset();
+        session_destroy();
+        session_write_close();
+        setcookie(session_name(), '', 0, '/');
+        session_regenerate_id(true);
+    }
+
+    function authorize($username, $password)
+    {
+        $q = "SELECT * FROM userLogin WHERE username = '$username'";
+        $res = $this->mySQL->query($q);
+        $user = $res->fetch_object();
+
+        if ($user) {
+            $loginSucces = password_verify($password, $user->password);
+            return $loginSucces ? $user->id : false;
+        } else {
+            return false;
+        }
+    }
+
+    function authenticate()
+    {
+        if (!session_id()) {
+            session_start();
+        }
+        return isset($_SESSION['authToken']) ? $_SESSION['authToken'] : false;
+    }
+}
+
+$authModel = new AuthModel($mySQL);
