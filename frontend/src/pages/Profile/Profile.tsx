@@ -25,10 +25,6 @@ export const Profile = () => {
     if (!user?.data) {
         return <></>
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 64893e8235dd3d566b376d4c82cd881d227570c7
 
     const selectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
@@ -37,14 +33,7 @@ export const Profile = () => {
         }
     };
 
-<<<<<<< HEAD
-    console.log(user.data);
-
-
-    function submitHandler(e: React.FormEvent) {
-=======
     function submitHandler(e: React.FormEvent){
->>>>>>> 64893e8235dd3d566b376d4c82cd881d227570c7
         e.preventDefault();
         apiModel.editUser(firstname, lastname, height, gender, birthday).then(res => {
             console.log(res);
