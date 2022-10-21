@@ -25,7 +25,7 @@ export const Matches = () => {
                         <img src="img_avatar.png" alt="Avatar" ></img>
                         <div className="container">
                             <h4><b>{user.firstname} {user.lastname}</b></h4>
-                            <p>{user.height} {user.birthday}</p>
+                            <p>Height: {user.height} Age: {user.age}</p>
                         </div>
                     </div>
                 ))}

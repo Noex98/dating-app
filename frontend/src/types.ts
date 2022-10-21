@@ -1,7 +1,7 @@
 export interface IUser {
     firstname: string,
     lastname: string,
-    birthday: string,
+    age: number,
     gender: "male" | "female",
     height: number
 }
@@ -14,6 +14,7 @@ export interface ICurrentUser extends IUser {
         heightMax: number,
         gender: "male" | "female" | "all"
     };
+    birthday: string
 }
 
 export interface IRes<T> {
