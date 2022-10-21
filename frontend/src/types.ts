@@ -8,12 +8,12 @@ export interface IUser {
 
 export interface ICurrentUser extends IUser {
     preferences: {
-        minAge: number,
-        maxAge: number,
-        minHeight: number,
-        maxHeight: number,
+        ageMin: number,
+        ageMax: number,
+        heightMin: number,
+        heightMax: number,
         gender: "male" | "female" | "all"
-    }
+    };
 }
 
 export interface IRes<T> {

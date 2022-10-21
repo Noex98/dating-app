@@ -8,17 +8,17 @@ export const Matchlist = () => {
   const [heightMax, setHeightMax] = useState(0);
   const [ageMin, setAgeMin] = useState(0);
   const [ageMax, setAgeMax] = useState(0);
-  const [gender, setGender] = useState<"male" | "female">("male");
+  const [gender, setGender] = useState<"male" | "female" | "all">("male");
 
   const user = useContext(userContext);
   
   useEffect(() => {
     if(user?.data){
-        setHeightMin(user.data.heightMin);
-        setHeightMax(user.data.heightMax);
-        setAgeMin(user.data.ageMin);
-        setAgeMax(user.data.ageMax);
-        setGender(user.data.gender);
+        setHeightMin(user.data.preferences.heightMin);
+        setHeightMax(user.data.preferences.heightMax);
+        setAgeMin(user.data.preferences.ageMin);
+        setAgeMax(user.data.preferences.ageMax);
+        setGender(user.data.preferences.gender);
     }
 }, [user?.data])
 

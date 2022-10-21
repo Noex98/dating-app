@@ -89,7 +89,7 @@ export class apiModel {
         heightMax: number,
         ageMin: number,
         ageMax: number,
-        gender: "male" | "female"
+        gender: "male" | "female" | "all"
     ) => {
         const url = this.url + '/preferences'
         const res = await fetch(url, {
