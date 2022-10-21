@@ -1,48 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Header, userContext } from '../../components';
-import { apiModel } from '../../models/apiModel';
+import { Header } from '../../components';
+import { Matches, Preferences } from './components';
 
 
 export const Matchlist = () => {
-  const [heightMin, setHeightMin] = useState(0);
-  const [heightMax, setHeightMax] = useState(0);
-  const [ageMin, setAgeMin] = useState(0);
-  const [ageMax, setAgeMax] = useState(0);
-  const [gender, setGender] = useState<"male" | "female" | "all">("male");
-
-  const user = useContext(userContext);
-  
-  useEffect(() => {
-    if(user?.data){
-        setHeightMin(user.data.preferences.heightMin);
-        setHeightMax(user.data.preferences.heightMax);
-        setAgeMin(user.data.preferences.ageMin);
-        setAgeMax(user.data.preferences.ageMax);
-        setGender(user.data.preferences.gender);
-    }
-}, [user?.data])
-
-if(!user?.data){
-    return <></>
-}
-
-
-  const selectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    if (value === "male" || value === "female") {
-      setGender(value);
-    }
-  };
-
-  function submitHandler(e: React.FormEvent) {
-    e.preventDefault();
-    const res = apiModel.setPreferences(heightMin, heightMax, ageMin, ageMax, gender)
-
-  }
-
-
   return (
     <>
+<<<<<<< HEAD
         <Header />
       <h1>Matchlist</h1>
       <form onSubmit={e => submitHandler(e)}>
@@ -71,6 +34,12 @@ if(!user?.data){
         </div>
         <input type="submit" value="Submit" className='button' />
       </form>
+=======
+      <Header />
+      <Preferences />
+      <Matches />
+      <div>Matchlist</div>
+>>>>>>> 64893e8235dd3d566b376d4c82cd881d227570c7
     </>
   )
 }
