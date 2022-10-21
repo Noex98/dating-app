@@ -28,7 +28,7 @@ export const Preferences = () => {
 
     function selectChange(e: React.ChangeEvent<HTMLSelectElement>) {
         const value = e.target.value;
-        if (value === "male" || value === "female") {
+        if (value === "male" || value === "female" || value === "all") {
           setGender(value);
         }
       }

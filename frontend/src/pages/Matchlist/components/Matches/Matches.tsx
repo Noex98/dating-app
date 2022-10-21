@@ -1,7 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { userContext } from '../../../../components'
 import { apiModel } from '../../../../models/apiModel';
 import { IUser } from '../../../../types';
+import './style.css';
 
 export const Matches = () => {
 
@@ -18,9 +19,17 @@ export const Matches = () => {
     return (
         <>
             <div>Matches</div>
-            {matches.map(user => (
-                <div>{user.firstname}</div>
-            ))}
+            <div className='wrapper'>
+                {matches.map(user => (
+                    <div className="card">
+                        <img src="img_avatar.png" alt="Avatar" ></img>
+                        <div className="container">
+                            <h4><b>{user.firstname} {user.lastname}</b></h4>
+                            <p>{user.height} {user.birthday}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
     )
 }
