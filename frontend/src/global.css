@@ -2,9 +2,38 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    outline-offset: 2px;
+    outline-color: blue;
+    outline-width: 2px;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-    background-color: rgb(253, 253, 253);
-    color: rgb(5, 5, 5);
+    background-color: rgb(245, 245, 245);
+    color: rgb(10, 10, 10);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+a {
+    text-decoration: inherit;
+    color: rgb(0, 0, 87);
+}
+
+a:hover {
+    color: rgb(0, 0, 156);
+}
+
+input, button, select {
+    padding:3px;
+}
+
+

@@ -67,9 +67,9 @@ export const Profile = () => {
                         <input type="number" min="1" max="999" value={height} onChange={e => setHeight(parseInt(e.target.value))}/>
                     </label>
                 </div>
-                <select onChange={selectChange}>
-                    <option selected={gender === "female" ? true : false} value="female">Female</option>
-                    <option selected={gender === "male" ? true : false} value="male">Male</option>
+                <select onChange={selectChange} defaultValue={gender} >
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
                 </select><br />
                 <input type="date"
                     min="0000-01-01" max="9999-12-31" value={birthday} onChange={e => setBirthday(e.target.value)}>

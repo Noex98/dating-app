@@ -3,7 +3,7 @@ export class apiModel {
     static url = "http://localhost:4000/api"
 
     static login = async (username: string, password: string) => {
-        const url = this.url + '/login/index.php'
+        const url = this.url + '/login'
         const res = await fetch(url, {
             method: "POST",
             credentials: "include",
@@ -19,7 +19,7 @@ export class apiModel {
     }
 
     static continueSession = async () => {
-        const url = this.url + '/continueSession/index.php'
+        const url = this.url + '/continueSession'
         const res = await fetch(url, {
             method: "POST",
             credentials: "include",
@@ -39,7 +39,7 @@ export class apiModel {
         gender: "male" | "female",
         birthday: string
     ) => {
-        const url = this.url + '/signup/index.php'
+        const url = this.url + '/signup'
         const res = await fetch(url, {
             method: "POST",
             credentials: "include",
@@ -66,7 +66,7 @@ export class apiModel {
         gender: "male" | "female",
         birthday: string
     ) => {
-        const url = this.url + '/edit/index.php'
+        const url = this.url + '/edit'
         const res = await fetch(url, {
             method: "POST",
             credentials: "include",
@@ -109,7 +109,7 @@ export class apiModel {
     }
 
     static logout = async () => {
-        const url = this.url + '/logout/index.php'
+        const url = this.url + '/logout'
         const res = await fetch(url, {
             method: "POST",
             credentials: "include",

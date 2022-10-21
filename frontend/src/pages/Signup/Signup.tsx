@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { Header } from '../../components';
 import { apiModel } from '../../models/apiModel';
+import './style.css'
 
 export const Signup = () => {
     const navigate = useNavigate();
@@ -39,24 +40,25 @@ export const Signup = () => {
     return (
         <>
             <Header />
-            <div>Signup</div>
-            <form onSubmit={e => submitHandler(e)}>
-                <input type="text" placeholder='Username' onChange={e => setUsername(e.target.value)} /> <br />
-                <input type="password" placeholder='Password' onChange={e => setPassword(e.target.value)} /> <br />
-                <br />
-                <input type="text" placeholder='First Name' onChange={e => setFirstname(e.target.value)} /> <br />
-                <input type="text" placeholder='Last Name' onChange={e => setLastname(e.target.value)} /> <br />
-                <input type="number" min="1" max="999" placeholder='Height' onChange={e => setHeight(parseInt(e.target.value))} /> <br />
-                <select onChange={selectChange}>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select><br />
-                <input type="date"
-                    min="0000-01-01" max="9999-12-31" onChange={e => setBirthday(e.target.value)}>
-                </input>
-                <input type="submit" value="Sign Up" />
-            </form>
+            <div className='signupPage'>
+                <h1>Signup</h1>
+                <form onSubmit={e => submitHandler(e)}>
+                    <input type="text" placeholder='Username' onChange={e => setUsername(e.target.value)} />
+                    <input type="password" placeholder='Password' onChange={e => setPassword(e.target.value)} />
+                    <input type="text" placeholder='First Name' onChange={e => setFirstname(e.target.value)} />
+                    <input type="text" placeholder='Last Name' onChange={e => setLastname(e.target.value)} />
+                    <input type="number" min="1" max="999" placeholder='Height' onChange={e => setHeight(parseInt(e.target.value))} />
+                    <select onChange={selectChange}>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select><br />
+                    <input type="date"
+                        min="0000-01-01" max="9999-12-31" onChange={e => setBirthday(e.target.value)}>
+                    </input>
+                    <input type="submit" value="Sign Up" />
+                </form>
                 {error}
+            </div>
         </>
     )
 }

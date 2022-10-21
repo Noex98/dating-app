@@ -2,20 +2,13 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/models/AuthModel.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/utils/allowCors.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/utils/getJsonBody.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/api/signup/utils.php');
 
     $req = getJsonBody();
 
-    $requestValid = (
-        !empty($req['username']) &&
-        !empty($req['password']) &&
-        !empty($req['firstname']) &&
-        !empty($req['lastname']) &&
-        !empty($req['height']) &&
-        !empty($req['birthday']) &&
-        !empty($req['gender'])
-    );
+    $allParamsExist = doesParamsExist($req);
 
-    if(!$requestValid){
+    if(!$allParamsExist){
         echo json_encode([
             'data' => null,
             'succes' => false,
@@ -23,6 +16,7 @@
         ]);
         
     } else {
+
         $authModel->registerUser(
             $req['username'],
             $req['password'],

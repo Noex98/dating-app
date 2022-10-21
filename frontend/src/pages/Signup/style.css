@@ -1,0 +1,14 @@
+.signupPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+}
+
+.signupPage form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

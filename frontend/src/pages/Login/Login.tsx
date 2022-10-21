@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { apiModel } from '../../models/apiModel';
 import { Header, userContext } from '../../components';
 import { useNavigate } from 'react-router-dom';
+import './style.css';
 
 export const Login = () => {
 
@@ -28,23 +29,25 @@ export const Login = () => {
     return (
         <>
             <Header />
-            <h1>Login</h1>
-            <form onSubmit={e =>submitHandler(e)}>
-                <div>
-                    <label>
-                        <span>Username: </span>
-                        <input type="text" onChange={e => setUsername(e.target.value)} />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <span>Password: </span>
-                        <input type="password" onChange={e => setPassword(e.target.value)} />
-                    </label>
-                </div>
-                <input type="submit" value="Log in" />
-            </form>
-            <div>{errMessage}</div>
+            <div className='loginPage'>
+                <h1>Login</h1>
+                <form onSubmit={e =>submitHandler(e)}>
+                    <div>
+                        <label>
+                            <div>Username: </div>
+                            <input type="text" onChange={e => setUsername(e.target.value)} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <div>Password: </div>
+                            <input type="password" onChange={e => setPassword(e.target.value)} />
+                        </label>
+                    </div>
+                    <input type="submit" value="Log in" />
+                </form>
+                <div>{errMessage}</div>
+            </div>
         </>
     )
 }
