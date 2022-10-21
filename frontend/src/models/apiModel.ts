@@ -1,8 +1,13 @@
+import { ICurrentUser, IRes } from "../types";
+
 export class apiModel {
 
     static url = "http://localhost:4000/api"
 
-    static login = async (username: string, password: string) => {
+    static login = async (
+        username: string, 
+        password: string
+    ): Promise<IRes<ICurrentUser>> => {
         const url = this.url + '/login'
         const res = await fetch(url, {
             method: "POST",
@@ -18,7 +23,7 @@ export class apiModel {
         return await res.json();
     }
 
-    static continueSession = async () => {
+    static continueSession = async (): Promise<IRes<ICurrentUser>> => {
         const url = this.url + '/continueSession'
         const res = await fetch(url, {
             method: "POST",
@@ -38,7 +43,7 @@ export class apiModel {
         height: number,
         gender: "male" | "female",
         birthday: string
-    ) => {
+    ): Promise<IRes<null>> => {
         const url = this.url + '/signup'
         const res = await fetch(url, {
             method: "POST",
@@ -65,7 +70,7 @@ export class apiModel {
         height: number,
         gender: "male" | "female",
         birthday: string
-    ) => {
+    ): Promise<IRes<null>> => {
         const url = this.url + '/edit'
         const res = await fetch(url, {
             method: "POST",
@@ -90,7 +95,7 @@ export class apiModel {
         ageMin: number,
         ageMax: number,
         gender: "male" | "female" | "all"
-    ) => {
+    ): Promise<IRes<null>> => {
         const url = this.url + '/preferences'
         const res = await fetch(url, {
             method: "POST",
@@ -112,7 +117,7 @@ export class apiModel {
 
     }
 
-    static logout = async () => {
+    static logout = async (): Promise<IRes<null>> => {
         const url = this.url + '/logout'
         const res = await fetch(url, {
             method: "POST",
