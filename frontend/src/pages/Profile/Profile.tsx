@@ -24,7 +24,6 @@ export const Profile = () => {
     if(!user?.data){
         return <></>
     }
-    
 
     const selectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
@@ -32,9 +31,6 @@ export const Profile = () => {
             setGender(value);
         }
     };
-
-    console.log(user.data);
-    
 
     function submitHandler(e: React.FormEvent){
         e.preventDefault();
