@@ -1,4 +1,4 @@
-import { ICurrentUser, IRes } from "../types";
+import { ICurrentUser, IRes, IUser } from "../types";
 
 export class apiModel {
 
@@ -113,8 +113,16 @@ export class apiModel {
         })
         return await res.json();
     }
-    static getMatches = async() => {
-        
+    static getMatches = async(): Promise<IRes<IUser[]>> => {
+        const url = this.url + '/getMatches'
+        const res = await fetch(url, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        return await res.json();
     }
 
     static logout = async (): Promise<IRes<null>> => {
