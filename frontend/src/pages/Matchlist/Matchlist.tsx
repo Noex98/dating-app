@@ -8,7 +8,6 @@ export const Matchlist = () => {
       <Header />
       <Preferences />
       <Matches />
-      <div>Matchlist</div>
     </>
   )
 }
