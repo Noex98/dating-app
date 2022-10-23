@@ -11,7 +11,9 @@ export const Matches = () => {
 
     useEffect(() => {
         apiModel.getMatches().then(res => {
-            setMatches(res.data)
+            if (res.succes) {
+                setMatches(res.data)
+            }
         })
     }, [user?.data?.preferences])
 

@@ -18,7 +18,7 @@ class UserModel
         $preferences = mysqli_fetch_assoc($result);
         $q = "CALL getPotentialMatches('" . $preferences['heightMin'] . "', '" .  $preferences['heightMax'] . "', '" . $preferences['ageMin'] . "', '" . $preferences['ageMax'] . "', '" . $preferences['gender'] . "')";
         $result = $this->mySQL->query($q);
-        
+        $matches = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $row['age'] = calcAge($row['birthday']);
             $matches[] = $row;
