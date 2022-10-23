@@ -2,17 +2,14 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/models/utils.php");
 
-class UserModel
-{
+class UserModel{
     private $mySQL;
 
-    public function __construct($mySQLConnection)
-    {
+    public function __construct($mySQLConnection){
         $this->mySQL = $mySQLConnection;
     }
 
-    function getMatches($id)
-    {
+    function getMatches($id){
         $q = "SELECT * FROM preferences WHERE id = '$id'";
         $result = $this->mySQL->query($q);
         $preferences = mysqli_fetch_assoc($result);
@@ -27,8 +24,7 @@ class UserModel
     }
 
 
-    function getUser($id)
-    {
+    function getUser($id){
         $q = "SELECT * FROM users  WHERE id = '$id'";
         $res = $this->mySQL->query($q);
         $output = mysqli_fetch_assoc($res);
@@ -40,14 +36,12 @@ class UserModel
         return $output;
     }
 
-    function editUserProfile($id, $firstname, $lastname, $birthday, $gender, $height)
-    {
+    function editUserProfile($id, $firstname, $lastname, $birthday, $gender, $height){
         $q = "CALL EditUserProfile( '$id', '$firstname', '$lastname', '$birthday', '$gender', '$height' )";
         $this->mySQL->query($q);
     }
 
-    function setPreferences($id, $heightMin, $heightMax, $ageMin, $ageMax, $gender)
-    {
+    function setPreferences($id, $heightMin, $heightMax, $ageMin, $ageMax, $gender){
         $q = "CALL `SetPreferences`('$id', '$heightMin', '$heightMax', '$ageMin', '$ageMax', '$gender');";
         $this->mySQL->query($q);
     }

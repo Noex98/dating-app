@@ -1,12 +1,10 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/sqlConfig.php");
 
-class AuthModel
-{
+class AuthModel{
     private $mySQL;
 
-    public function __construct($mySQLConnection)
-    {
+    public function __construct($mySQLConnection){
         $this->mySQL = $mySQLConnection;
     }
 
@@ -17,8 +15,8 @@ class AuthModel
         $lastname,
         $height,
         $birthday,
-        $gender,
-    ) {
+        $gender
+    ){
 
         $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -34,8 +32,7 @@ class AuthModel
         }
     }
 
-    function logout()
-    {
+    function logout(){
         session_unset();
         session_destroy();
         session_write_close();
@@ -43,8 +40,7 @@ class AuthModel
         session_regenerate_id(true);
     }
 
-    function authorize($username, $password)
-    {
+    function authorize($username, $password){
         $q = "SELECT * FROM userLogin WHERE username = '$username'";
         $res = $this->mySQL->query($q);
         $user = $res->fetch_object();
@@ -57,8 +53,7 @@ class AuthModel
         }
     }
 
-    function authenticate()
-    {
+    function authenticate(){
         if (!session_id()) {
             session_start();
         }

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Header, userContext } from '../../components';
+import { Image } from './components'
 import { apiModel } from '../../models/apiModel';
 import './style.css';
 
@@ -44,6 +45,8 @@ export const Profile = () => {
     return (
         <>
             <Header />
+
+            <Image />
 
             <form onSubmit={e => submitHandler(e)}>
                 <h1>Profile</h1>
