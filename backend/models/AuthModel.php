@@ -15,7 +15,7 @@ class AuthModel{
         $lastname,
         $height,
         $birthday,
-        $gender,
+        $gender
     ){
 
         $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
